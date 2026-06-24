@@ -47,3 +47,20 @@ The dataset contains skincare products including:
 * Streamlit
 * Jupyter Notebook
 * GitHub
+## Visualizations
+
+### Product Category Distribution
+
+![Category Distribution](images/category_distribution.png)
+
+### Irritant Level Distribution
+
+![Irritant Distribution](images/irritant_level_distribution.png)
+
+### Clean Score Distribution
+
+![Clean Score Distribution](images/clean_score_distribution.png)
+
+### Rating vs Clean Score
+
+![Rating vs Clean Score](images/rating_vs_clean_score.png)
