@@ -114,6 +114,3 @@ Top 5 products with similar ingredient compositions and skincare benefits.
 
 ![Recommendations](screenshots/recommendations.png)
 
-### Dashboard
-
-![Dashboard](screenshots/dashboard.png)
