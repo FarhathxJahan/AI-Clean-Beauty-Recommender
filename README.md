@@ -102,15 +102,14 @@ Vitamin C Serum
 
 Output:
 Top 5 products with similar ingredient compositions and skincare benefits.
-## Application Preview
+
 
 ## Application Preview
 
 ### Home Page
-
-![Home](screenshots/homepage.png)
+<img width="952" height="532" alt="homepage" src="https://github.com/user-attachments/assets/381c023f-cab3-4a92-9bc9-356b7ea6e5a2" />
 
 ### Recommendations
 
-![Recommendations](screenshots/recommendations.png)
+<img width="950" height="518" alt="recmmendations" src="https://github.com/user-attachments/assets/04e7db99-062a-4e99-bec5-13bffbd497e6" />
 
