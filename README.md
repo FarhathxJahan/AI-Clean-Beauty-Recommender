@@ -104,10 +104,16 @@ Output:
 Top 5 products with similar ingredient compositions and skincare benefits.
 ## Application Preview
 
-## Homepage
+## Application Preview
 
-![Homepage](visuals/home.png)
+### Home Page
 
-## Recommendations
+![Home](screenshots/homepage.png)
 
-![Recommendations](visuals/recommendation.png)
+### Recommendations
+
+![Recommendations](screenshots/recommendations.png)
+
+### Dashboard
+
+![Dashboard](screenshots/dashboard.png)
