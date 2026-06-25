@@ -64,3 +64,42 @@ The dataset contains skincare products including:
 ### Rating vs Clean Score
 
 ![Rating vs Clean Score](images/rating_vs_clean_score.png)
+## Machine Learning Enhancement
+
+To improve recommendation quality beyond rule-based filtering, a content-based recommendation system was developed using Natural Language Processing (NLP) techniques.
+
+### Method
+
+Product ingredient lists were transformed into numerical feature vectors using TF-IDF (Term Frequency-Inverse Document Frequency). Cosine Similarity was then applied to measure similarity between products based on their ingredient compositions.
+
+### Workflow
+
+1. Preprocess ingredient lists.
+2. Convert ingredients into TF-IDF vectors.
+3. Compute cosine similarity matrix.
+4. Identify products with similar ingredient profiles.
+5. Recommend products that closely match the selected product.
+
+### Benefits
+
+* Recommends alternatives with similar ingredient formulations.
+* Identifies products with comparable skincare properties.
+* Provides personalized suggestions beyond simple category matching.
+* Enhances recommendation accuracy using machine learning techniques.
+
+### Technologies Used
+
+* Scikit-learn
+* TF-IDF Vectorizer
+* Cosine Similarity
+* Pandas
+* NumPy
+
+### Example
+
+Input Product:
+Vitamin C Serum
+
+Output:
+Top 5 products with similar ingredient compositions and skincare benefits.
+
