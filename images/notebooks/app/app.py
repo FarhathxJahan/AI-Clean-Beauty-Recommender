@@ -22,10 +22,10 @@ df["irritant_count"] = df["irritant_count"].fillna(0)
 # RECOMMENDATION SCORING
 # =========================
 df["final_score"] = (
-    df["clean_score"] * 0.4 +
-    df["recommendation_score"] * 0.3 +
-    df["rating"] * 10 * 0.2 -
-    df["irritant_count"] * 2
+    df["clean_score"] * 0.4
+    + df["recommendation_score"] * 0.3
+    + df["rating"] * 10 * 0.2
+    - df["irritant_count"] * 2
 )
 
 # =========================
@@ -33,21 +33,54 @@ df["final_score"] = (
 # =========================
 st.set_page_config(
     page_title="AI Clean Beauty Recommender",
+    page_icon="💄",
     layout="wide"
 )
 
+# =========================
+# HEADER
+# =========================
 st.title("💄 AI Clean Beauty Recommender")
-st.write("Find clean, safe and personalized skincare recommendations.")
+st.write(
+    "Find clean, safe and personalized skincare recommendations using AI-based scoring."
+)
+
+# =========================
+# DASHBOARD METRICS
+# =========================
+col1, col2, col3 = st.columns(3)
+
+with col1:
+    st.metric(
+        "Total Products",
+        len(df)
+    )
+
+with col2:
+    st.metric(
+        "Categories",
+        df["secondary_category"].nunique()
+    )
+
+with col3:
+    st.metric(
+        "Average Rating",
+        round(df["rating"].mean(), 2)
+    )
 
 # =========================
 # SIDEBAR FILTERS
 # =========================
-st.sidebar.header("Filters")
+st.sidebar.header("🔍 Filters")
 
 category = st.sidebar.selectbox(
     "Category",
-    ["All"] + sorted(
-        df["secondary_category"].dropna().unique().tolist()
+    ["All"]
+    + sorted(
+        df["secondary_category"]
+        .dropna()
+        .unique()
+        .tolist()
     )
 )
 
@@ -131,14 +164,15 @@ filtered = filtered.sort_values(
 results = filtered.head(top_n)
 
 # =========================
-# RESULTS
+# RECOMMENDATIONS
 # =========================
-st.subheader("Top Recommended Products")
+st.subheader("🌟 Top Recommended Products")
 
 if results.empty:
     st.warning(
         "No products found. Try different filters."
     )
+
 else:
     for _, row in results.iterrows():
 
@@ -171,16 +205,76 @@ else:
             row["irritant_count"]
         )
 
+        st.write(
+            "🎯 Final Score:",
+            round(row["final_score"], 2)
+        )
+
         st.info(
             f"""
             Why this product is recommended:
 
-            ✔ High clean score: {row['clean_score']}
+            ✔ High Clean Score: {row['clean_score']}
 
-            ✔ Matches your selected filters
+            ✔ Matches selected filters
 
             ✔ Lower irritant count
 
-            ✔ Balanced recommendation score
+            ✔ Balanced recommendation algorithm
+
+            ✔ Good customer rating
             """
         )
+
+# =========================
+# DATA VISUALIZATION
+# =========================
+st.markdown("---")
+st.header("📊 Beauty Insights Dashboard")
+
+# Chart 1
+st.subheader("Category Distribution")
+
+category_counts = (
+    df["secondary_category"]
+    .value_counts()
+)
+
+st.bar_chart(category_counts)
+
+# Chart 2
+st.subheader("Clean Score Distribution")
+
+clean_score_dist = (
+    df["clean_score"]
+    .value_counts()
+    .sort_index()
+)
+
+st.bar_chart(clean_score_dist)
+
+# Chart 3
+st.subheader("Irritant Count Distribution")
+
+irritant_dist = (
+    df["irritant_count"]
+    .value_counts()
+    .sort_index()
+)
+
+st.bar_chart(irritant_dist)
+
+# Chart 4
+st.subheader("Top 10 Highest Rated Products")
+
+top_rated = (
+    df[["product_name", "rating"]]
+    .sort_values(
+        by="rating",
+        ascending=False
+    )
+    .head(10)
+    .set_index("product_name")
+)
+
+st.bar_chart(top_rated)
